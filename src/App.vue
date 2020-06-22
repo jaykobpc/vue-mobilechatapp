@@ -6,11 +6,27 @@
 
 <script>
 export default {
-  name: 'App',
-  components: {
-    
+  name: "App",
+  mounted() {
+    this.preventImageSelect();
+    this.preventContextMenu();
+  },
+  methods: {
+    preventImageSelect() {
+      var imageview = document.querySelectorAll("img");
+      imageview.forEach(imageView => {
+        imageView.addEventListener("contextmenu", e => {
+          e.preventDefault();
+        });
+      });
+    },
+    preventContextMenu() {
+      window.addEventListener("contextmenu", e => {
+        e.preventDefault();
+      });
+    }
   }
-}
+};
 </script>
 
 <style lang="scss">
@@ -41,5 +57,4 @@ body {
 .theme-color {
   background-color: #4b64f2;
 }
-
 </style>
